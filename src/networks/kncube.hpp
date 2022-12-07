@@ -48,8 +48,8 @@ class KNCube : public Network {
   int _RightNode( int node, int dim );
 
 public:
-  KNCube( const Configuration &config, const string & name, bool mesh, Interconnect* icnt );
-  static void RegisterRoutingFunctions(Interconnect* icnt);
+  KNCube( const Configuration &config, const string & name, bool mesh, booksim2::Interconnect* icnt );
+  static void RegisterRoutingFunctions(booksim2::Interconnect* icnt);
 
   int GetN( ) const;
   int GetK( ) const;

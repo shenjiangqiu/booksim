@@ -36,8 +36,9 @@
 #include "credit.hpp"
 #include "config_utils.hpp"
 
+namespace booksim2 {
 class Interconnect;
-
+}
 class BufferState : public Module {
   
   class BufferPolicy : public Module {
@@ -55,8 +56,8 @@ class BufferState : public Module {
     virtual int LimitFor(int vc = 0) const = 0;
 
     static BufferPolicy * New(Configuration const & config, 
-			      BufferState * parent, Interconnect* icnt, const string & name);
-    Interconnect* icnt;
+			      BufferState * parent, booksim2::Interconnect* icnt, const string & name);
+    booksim2::Interconnect* icnt;
   };
   
   class PrivateBufferPolicy : public BufferPolicy {
@@ -181,11 +182,11 @@ class BufferState : public Module {
 public:
 
   BufferState( const Configuration& config, 
-	       Module *parent, Interconnect* icnt, const string& name );
+	       Module *parent, booksim2::Interconnect* icnt, const string& name );
 
   ~BufferState();
 
-  Interconnect* icnt;
+  booksim2::Interconnect* icnt;
 
   inline void SetMinLatency(int min_latency) {
     _buffer_policy->SetMinLatency(min_latency);

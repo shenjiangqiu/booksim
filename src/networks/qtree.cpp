@@ -46,7 +46,7 @@
 #include "misc_utils.hpp"
 #include "Interconnect.hpp"
 
-QTree::QTree( const Configuration& config, const string & name, Interconnect* icnt )
+QTree::QTree( const Configuration& config, const string & name, booksim2::Interconnect* icnt )
 : Network ( config, name, icnt )
 {
   _ComputeSize( config );
@@ -77,7 +77,7 @@ void QTree::_ComputeSize( const Configuration& config )
 
 }
 
-void QTree::RegisterRoutingFunctions(Interconnect* icnt){
+void QTree::RegisterRoutingFunctions(booksim2::Interconnect* icnt){
 
 }
 

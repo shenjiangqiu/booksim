@@ -9,7 +9,7 @@
 #include "GNNSimConfig.hpp"
 #include "GNNTrafficManager.hpp"
 #include "routefunc.hpp"
-
+namespace booksim2 {
 Interconnect::Interconnect(const std::string ConfigFilePath,
                            int NumNodes)
     : HEADER_SIZE(0/*TODO:*/),
@@ -301,3 +301,4 @@ void Interconnect::initParameters() {
 }
 
 Interconnect::~Interconnect() = default;
+}

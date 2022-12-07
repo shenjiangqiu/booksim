@@ -50,7 +50,7 @@
 #include "dragonfly.hpp"
 
 
-Network::Network( const Configuration &config, const string & name, Interconnect* icnt ) :
+Network::Network( const Configuration &config, const string & name, booksim2::Interconnect* icnt ) :
   TimedModule( 0, name ), icnt(icnt)
 {
   _size     = -1; 
@@ -78,7 +78,7 @@ Network::~Network( )
   }
 }
 
-Network * Network::New(const Configuration & config, const string & name, Interconnect* icnt)
+Network * Network::New(const Configuration & config, const string & name, booksim2::Interconnect* icnt)
 {
   const string topo = config.GetStr( "topology" );
   Network * n = NULL;

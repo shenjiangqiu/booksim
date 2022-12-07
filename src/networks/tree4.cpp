@@ -53,7 +53,7 @@
 #include "misc_utils.hpp"
 #include "Interconnect.hpp"
 
-Tree4::Tree4( const Configuration& config, const string & name, Interconnect* icnt )
+Tree4::Tree4( const Configuration& config, const string & name, booksim2::Interconnect* icnt )
 : Network ( config, name, icnt )
 {
   _ComputeSize( config );
@@ -83,7 +83,7 @@ void Tree4::_ComputeSize( const Configuration& config )
     * ( 2 * _k );                // Connectivity of Middle Routers
 }
 
-void Tree4::RegisterRoutingFunctions(Interconnect* icnt){
+void Tree4::RegisterRoutingFunctions(booksim2::Interconnect* icnt){
 
 }
 

@@ -35,7 +35,7 @@
 
 //#define DEBUG_FLY
 
-KNFly::KNFly( const Configuration &config, const string & name, Interconnect* icnt ) :
+KNFly::KNFly( const Configuration &config, const string & name, booksim2::Interconnect* icnt ) :
 Network( config, name, icnt )
 {
   _ComputeSize( config );

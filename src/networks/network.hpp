@@ -44,7 +44,7 @@
 
 typedef Channel<Credit> CreditChannel;
 
-class Interconnect;
+class booksim2::Interconnect;
 
 class Network : public TimedModule {
 protected:
@@ -74,11 +74,11 @@ protected:
 
 
 public:
-  Network( const Configuration &config, const string & name, Interconnect* icnt );
+  Network( const Configuration &config, const string & name, booksim2::Interconnect* icnt );
   virtual ~Network( );
-  Interconnect* icnt;
+  booksim2::Interconnect* icnt;
 
-  static Network *New( const Configuration &config, const string & name, Interconnect* icnt);
+  static Network *New( const Configuration &config, const string & name, booksim2::Interconnect* icnt);
 
   virtual void WriteFlit( Flit *f, int source );
   virtual Flit *ReadFlit( int dest );

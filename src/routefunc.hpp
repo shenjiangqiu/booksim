@@ -33,9 +33,10 @@
 #include "outputset.hpp"
 #include "config_utils.hpp"
 //#include "Interconnect.hpp"
+namespace booksim2 {
 class Interconnect;
-
-void InitializeRoutingMap(Interconnect* icnt, const Configuration &config);
+}
+void InitializeRoutingMap(booksim2::Interconnect* icnt, const Configuration &config);
 
 //extern map<string, tRoutingFunction> gRoutingFunctionMap;
 

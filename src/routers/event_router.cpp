@@ -38,7 +38,7 @@
 
 EventRouter::EventRouter( const Configuration& config,
 		    Module *parent, const string & name, int id,
-		    int inputs, int outputs, Interconnect* icnt )
+		    int inputs, int outputs, booksim2::Interconnect* icnt )
   : Router( config,
 	    parent, name,
 	    id,

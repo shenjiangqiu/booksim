@@ -49,11 +49,11 @@
 using namespace std;
 
 class Router ;
-class Interconnect;
+class booksim2::Interconnect;
 
 class FlitChannel : public Channel<Flit> {
 public:
-  FlitChannel(Module * parent, Interconnect* icnt, string const & name, int classes);
+  FlitChannel(Module * parent, booksim2::Interconnect* icnt, string const & name, int classes);
 
   void SetSource(Router const * const router, int port) ;
   inline Router const * const GetSource() const {
@@ -80,7 +80,7 @@ public:
   virtual void WriteOutputs();
 
 private:
-  Interconnect* icnt;
+  booksim2::Interconnect* icnt;
   
   ////////////////////////////////////////
   //

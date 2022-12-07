@@ -64,8 +64,8 @@ class FatTree : public Network {
 
 public:
 
-  FatTree( const Configuration& config ,const string & name, Interconnect* icnt );
-  static void RegisterRoutingFunctions(Interconnect* icnt) ;
+  FatTree( const Configuration& config ,const string & name, booksim2::Interconnect* icnt );
+  static void RegisterRoutingFunctions(booksim2::Interconnect* icnt) ;
 
   //
   // Methods to Assit Routing Functions

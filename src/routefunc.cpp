@@ -78,7 +78,7 @@
 void qtree_nca( const Router *r, const Flit *f,
 		int in_channel, OutputSet* outputs, bool inject)
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
     vcBegin = icnt->gReadReqBeginVC;
@@ -130,7 +130,7 @@ void qtree_nca( const Router *r, const Flit *f,
 void tree4_anca( const Router *r, const Flit *f,
 		 int in_channel, OutputSet* outputs, bool inject)
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
     vcBegin = icnt->gReadReqBeginVC;
@@ -201,7 +201,7 @@ void tree4_anca( const Router *r, const Flit *f,
 void tree4_nca( const Router *r, const Flit *f,
 		int in_channel, OutputSet* outputs, bool inject)
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
     vcBegin = icnt->gReadReqBeginVC;
@@ -265,7 +265,7 @@ void tree4_nca( const Router *r, const Flit *f,
 void fattree_nca( const Router *r, const Flit *f,
                int in_channel, OutputSet* outputs, bool inject)
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
     vcBegin = icnt->gReadReqBeginVC;
@@ -331,7 +331,7 @@ void fattree_anca( const Router *r, const Flit *f,
                 int in_channel, OutputSet* outputs, bool inject)
 {
 
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
     vcBegin = icnt->gReadReqBeginVC;
@@ -407,12 +407,12 @@ void fattree_anca( const Router *r, const Flit *f,
 //         pick xy or yx min routing adaptively at the source router
 // ===
 
-int dor_next_mesh( Interconnect* icnt, int cur, int dest, bool descending = false );
+int dor_next_mesh( booksim2::Interconnect* icnt, int cur, int dest, bool descending = false );
 
 void adaptive_xy_yx_mesh( const Router *r, const Flit *f, 
 		 int in_channel, OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
     vcBegin = icnt->gReadReqBeginVC;
@@ -485,7 +485,7 @@ void adaptive_xy_yx_mesh( const Router *r, const Flit *f,
 void xy_yx_mesh( const Router *r, const Flit *f, 
 		 int in_channel, OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
     vcBegin = icnt->gReadReqBeginVC;
@@ -547,7 +547,7 @@ void xy_yx_mesh( const Router *r, const Flit *f,
 
 //=============================================================
 
-int dor_next_mesh( Interconnect* icnt, int cur, int dest, bool descending )
+int dor_next_mesh( booksim2::Interconnect* icnt, int cur, int dest, bool descending )
 {
   if ( cur == dest ) {
     return 2*icnt->gN;  // Eject
@@ -580,7 +580,7 @@ int dor_next_mesh( Interconnect* icnt, int cur, int dest, bool descending )
 
 //=============================================================
 
-void dor_next_torus( Interconnect* icnt, int cur, int dest, int in_port,
+void dor_next_torus( booksim2::Interconnect* icnt, int cur, int dest, int in_port,
 		     int *out_port, int *partition,
 		     bool balance = false )
 {
@@ -652,7 +652,7 @@ void dor_next_torus( Interconnect* icnt, int cur, int dest, int in_port,
 
 void dim_order_mesh( const Router *r, const Flit *f, int in_channel, OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int out_port = inject ? -1 : dor_next_mesh( icnt, r->GetID( ), f->dest );
   
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
@@ -692,7 +692,7 @@ void dim_order_mesh( const Router *r, const Flit *f, int in_channel, OutputSet *
 
 void dim_order_ni_mesh( const Router *r, const Flit *f, int in_channel, OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int out_port = inject ? -1 : dor_next_mesh( icnt, r->GetID( ), f->dest );
   
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
@@ -743,7 +743,7 @@ void dim_order_ni_mesh( const Router *r, const Flit *f, int in_channel, OutputSe
 
 void dim_order_pni_mesh( const Router *r, const Flit *f, int in_channel, OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int out_port = inject ? -1 : dor_next_mesh( icnt, r->GetID(), f->dest );
   
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
@@ -799,7 +799,7 @@ void dim_order_pni_mesh( const Router *r, const Flit *f, int in_channel, OutputS
 
 // Random intermediate in the minimal quadrant defined
 // by the source and destination
-int rand_min_intr_mesh( Interconnect* icnt, int src, int dest )
+int rand_min_intr_mesh( booksim2::Interconnect* icnt, int src, int dest )
 {
   int dist;
 
@@ -826,7 +826,7 @@ int rand_min_intr_mesh( Interconnect* icnt, int src, int dest )
 
 void romm_mesh( const Router *r, const Flit *f, int in_channel, OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
     vcBegin = icnt->gReadReqBeginVC;
@@ -888,7 +888,7 @@ void romm_mesh( const Router *r, const Flit *f, int in_channel, OutputSet *outpu
 
 void romm_ni_mesh( const Router *r, const Flit *f, int in_channel, OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
     vcBegin = icnt->gReadReqBeginVC;
@@ -946,7 +946,7 @@ void romm_ni_mesh( const Router *r, const Flit *f, int in_channel, OutputSet *ou
 
 void min_adapt_mesh( const Router *r, const Flit *f, int in_channel, OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
     vcBegin = icnt->gReadReqBeginVC;
@@ -1047,7 +1047,7 @@ void min_adapt_mesh( const Router *r, const Flit *f, int in_channel, OutputSet *
 
 void planar_adapt_mesh( const Router *r, const Flit *f, int in_channel, OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
     vcBegin = icnt->gReadReqBeginVC;
@@ -1292,7 +1292,7 @@ void limited_adapt_mesh( const Router *r, const Flit *f, int in_channel, OutputS
 
 void valiant_mesh( const Router *r, const Flit *f, int in_channel, OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
     vcBegin = icnt->gReadReqBeginVC;
@@ -1354,7 +1354,7 @@ void valiant_mesh( const Router *r, const Flit *f, int in_channel, OutputSet *ou
 
 void valiant_torus( const Router *r, const Flit *f, int in_channel, OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
     vcBegin = icnt->gReadReqBeginVC;
@@ -1434,7 +1434,7 @@ void valiant_torus( const Router *r, const Flit *f, int in_channel, OutputSet *o
 void valiant_ni_torus( const Router *r, const Flit *f, int in_channel, 
 		       OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
     vcBegin = icnt->gReadReqBeginVC;
@@ -1537,7 +1537,7 @@ void valiant_ni_torus( const Router *r, const Flit *f, int in_channel,
 void dim_order_torus( const Router *r, const Flit *f, int in_channel, 
 		      OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
     vcBegin = icnt->gReadReqBeginVC;
@@ -1606,7 +1606,7 @@ void dim_order_torus( const Router *r, const Flit *f, int in_channel,
 void dim_order_ni_torus( const Router *r, const Flit *f, int in_channel, 
 			 OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
     vcBegin = icnt->gReadReqBeginVC;
@@ -1672,7 +1672,7 @@ void dim_order_ni_torus( const Router *r, const Flit *f, int in_channel,
 void dim_order_bal_torus( const Router *r, const Flit *f, int in_channel, 
 			  OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
     vcBegin = icnt->gReadReqBeginVC;
@@ -1740,7 +1740,7 @@ void dim_order_bal_torus( const Router *r, const Flit *f, int in_channel,
 
 void min_adapt_torus( const Router *r, const Flit *f, int in_channel, OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
     vcBegin = icnt->gReadReqBeginVC;
@@ -1822,7 +1822,7 @@ void min_adapt_torus( const Router *r, const Flit *f, int in_channel, OutputSet 
 void dest_tag_fly( const Router *r, const Flit *f, int in_channel, 
 		   OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
     vcBegin = icnt->gReadReqBeginVC;
@@ -1939,7 +1939,7 @@ void chaos_mesh( const Router *r, const Flit *f,
 
 //=============================================================
 
-void InitializeRoutingMap( Interconnect* icnt, const Configuration & config )
+void InitializeRoutingMap( booksim2::Interconnect* icnt, const Configuration & config )
 {
 
   icnt->gNumVCs = config.GetInt( "num_vcs" );

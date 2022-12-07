@@ -48,7 +48,7 @@
 #include "Interconnect.hpp"
 
 IQRouter::IQRouter( Configuration const & config, Module *parent, 
-		    string const & name, int id, int inputs, int outputs, Interconnect* icnt )
+		    string const & name, int id, int inputs, int outputs, booksim2::Interconnect* icnt )
 : Router( config, parent, name, id, inputs, outputs, icnt ), _active(false)
 {
   _vcs         = config.GetInt( "num_vcs" );

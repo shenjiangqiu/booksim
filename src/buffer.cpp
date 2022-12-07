@@ -33,7 +33,7 @@
 #include "Interconnect.hpp"
 
 Buffer::Buffer( const Configuration& config, int outputs, 
-		Module *parent, Interconnect* icnt, const string& name ) :
+		Module *parent, booksim2::Interconnect* icnt, const string& name ) :
 Module( parent, name ), _occupancy(0), icnt(icnt)
 {
   int num_vcs = config.GetInt( "num_vcs" );

@@ -46,7 +46,7 @@
 
 //register the requests to a node
 class PacketReplyInfo;
-class Interconnect;
+class booksim2::Interconnect;
 
 class TrafficManager : public Module {
 
@@ -56,7 +56,7 @@ private:
   vector<int> _packet_size_max_val;
 
 protected:
-  Interconnect* icnt;
+  booksim2::Interconnect* icnt;
 
   int _nodes;
   int _routers;
@@ -297,9 +297,9 @@ public:
                               //vector<Network *> const & net);
   static TrafficManager * New(Configuration const & config, 
                               vector<Network *> const & net,
-                              Interconnect* icnt = nullptr);
+                              booksim2::Interconnect* icnt = nullptr);
 
-  TrafficManager( const Configuration &config, const vector<Network *> & net, Interconnect* icnt = nullptr);
+  TrafficManager( const Configuration &config, const vector<Network *> & net, booksim2::Interconnect* icnt = nullptr);
   virtual ~TrafficManager( );
 
   bool Run( );

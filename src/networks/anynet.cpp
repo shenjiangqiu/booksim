@@ -59,7 +59,7 @@
 //this is a hack, I can't easily get the routing talbe out of the network
 //map<int, int>* anynet_global_routing_table;
 
-AnyNet::AnyNet( const Configuration &config, const string & name, Interconnect* icnt )
+AnyNet::AnyNet( const Configuration &config, const string & name, booksim2::Interconnect* icnt )
   :  Network( config, name, icnt ){
 
   router_list.resize(2);
@@ -208,13 +208,13 @@ void AnyNet::_BuildNet( const Configuration &config ){
 }
 
 
-void AnyNet::RegisterRoutingFunctions(Interconnect* icnt) {
+void AnyNet::RegisterRoutingFunctions(booksim2::Interconnect* icnt) {
   icnt->gRoutingFunctionMap["min_anynet"] = &min_anynet;
 }
 
 void min_anynet( const Router *r, const Flit *f, int in_channel, 
 		 OutputSet *outputs, bool inject ){
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   int out_port=-1;
   if(!inject){
     assert(icnt->anynet_global_routing_table[r->GetID()].count(f->dest)!=0);

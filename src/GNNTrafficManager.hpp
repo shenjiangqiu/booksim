@@ -13,14 +13,14 @@
 #include "flit.hpp"
 class DomainCrossRequest;
 class Network;
-class Interconnect;
+class booksim2::Interconnect;
 //#include "Domain/Interface/DomainCrossRequest.hpp"
 
 class GNNTrafficManager : public TrafficManager {
 protected:
   virtual void _RetireFlit( Flit *f, int dest );
   virtual void _GeneratePacket(void* packet,
-                               uint64_t addr, int bytes, Interconnect::Type type,
+                               uint64_t addr, int bytes, booksim2::Interconnect::Type type,
                                int header_size, uint32_t subnet, int cl, int time, int src, int dst);
   virtual int  _IssuePacket( int source, int cl );
   virtual void _Step();
@@ -31,14 +31,14 @@ protected:
   uint32_t flit_size;
   
 public:
-  GNNTrafficManager( const Configuration &config, const vector<Network *> & net, Interconnect* icnt );
+  GNNTrafficManager( const Configuration &config, const vector<Network *> & net, booksim2::Interconnect* icnt );
   virtual ~GNNTrafficManager( );
   
   // correspond to TrafficManger::Run/SingleSim
   void Init();
   
   // TODO: if it is not good...
-  friend class Interconnect;
+  friend class booksim2::Interconnect;
   
   //    virtual void WriteStats( ostream & os = cout ) const;
   //    virtual void DisplayStats( ostream & os = cout ) const;

@@ -46,14 +46,14 @@
 
 class CMesh : public Network {
 public:
-  CMesh( const Configuration &config, const string & name, Interconnect* icnt );
+  CMesh( const Configuration &config, const string & name, booksim2::Interconnect* icnt );
   int GetN() const;
   int GetK() const;
 
-  static int NodeToRouter( Interconnect* icnt, int address ) ;
-  static int NodeToPort( Interconnect* icnt, int address ) ;
+  static int NodeToRouter( booksim2::Interconnect* icnt, int address ) ;
+  static int NodeToPort( booksim2::Interconnect* icnt, int address ) ;
 
-  static void RegisterRoutingFunctions(Interconnect* icnt) ;
+  static void RegisterRoutingFunctions(booksim2::Interconnect* icnt) ;
 
 private:
 

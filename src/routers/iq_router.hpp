@@ -152,7 +152,7 @@ public:
 
   IQRouter( Configuration const & config,
 	    Module *parent, string const & name, int id,
-	    int inputs, int outputs, Interconnect* icnt );
+	    int inputs, int outputs, booksim2::Interconnect* icnt );
 
   virtual ~IQRouter( );
   

@@ -58,8 +58,8 @@ class QTree : public Network {
 
 public:
 
-  QTree( const Configuration& config, const string & name, Interconnect* icne );
-  static void RegisterRoutingFunctions(Interconnect* icnt) ;
+  QTree( const Configuration& config, const string & name, booksim2::Interconnect* icne );
+  static void RegisterRoutingFunctions(booksim2::Interconnect* icnt) ;
 
   static int HeightFromID( int id );
   static int PosFromID( int id );

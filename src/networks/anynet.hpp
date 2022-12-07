@@ -53,13 +53,13 @@ class AnyNet : public Network {
   void route(int r_start);
 
 public:
-  AnyNet( const Configuration &config, const string & name, Interconnect* icnt);
+  AnyNet( const Configuration &config, const string & name, booksim2::Interconnect* icnt);
   ~AnyNet();
 
   int GetN( ) const{ return -1;}
   int GetK( ) const{ return -1;}
 
-  static void RegisterRoutingFunctions(Interconnect* icnt);
+  static void RegisterRoutingFunctions(booksim2::Interconnect* icnt);
   double Capacity( ) const {return -1;}
   void InsertRandomFaults( const Configuration &config ){}
 };

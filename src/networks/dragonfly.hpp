@@ -55,13 +55,13 @@ class DragonFlyNew : public Network {
 
  
 public:
-  DragonFlyNew( const Configuration &config, const string & name, Interconnect* icnt );
+  DragonFlyNew( const Configuration &config, const string & name, booksim2::Interconnect* icnt );
 
   int GetN( ) const;
   int GetK( ) const;
 
   double Capacity( ) const;
-  static void RegisterRoutingFunctions(Interconnect* icnt);
+  static void RegisterRoutingFunctions(booksim2::Interconnect* icnt);
   void InsertRandomFaults( const Configuration &config );
 
 };

@@ -36,7 +36,9 @@
 #include "routefunc.hpp"
 #include "config_utils.hpp"
 
+namespace booksim2 {
 class Interconnect;
+}
 
 class Buffer : public Module {
   
@@ -45,7 +47,7 @@ class Buffer : public Module {
 
   vector<VC*> _vc;
 
-  Interconnect* icnt;
+  booksim2::Interconnect* icnt;
 
 #ifdef TRACK_BUFFERS
   vector<int> _class_occupancy;
@@ -54,7 +56,7 @@ class Buffer : public Module {
 public:
   
   Buffer( const Configuration& config, int outputs,
-	  Module *parent, Interconnect* icnt, const string& name );
+	  Module *parent, booksim2::Interconnect* icnt, const string& name );
   ~Buffer();
 
   void AddFlit( int vc, Flit *f );

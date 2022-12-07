@@ -47,12 +47,12 @@
 
 using namespace std;
 
-class Interconnect;
+class booksim2::Interconnect;
 
 template<typename T>
 class Channel : public TimedModule {
 public:
-  Channel(Module * parent, Interconnect* icnt, string const & name);
+  Channel(Module * parent, booksim2::Interconnect* icnt, string const & name);
   virtual ~Channel() {}
 
   // Physical Parameters
@@ -75,12 +75,12 @@ protected:
   T * _output;
   queue<pair<int, T *> > _wait_queue;
 
-  Interconnect* icnt;
+  booksim2::Interconnect* icnt;
 
 };
 
 template<typename T>
-Channel<T>::Channel(Module * parent, Interconnect* icnt, string const & name)
+Channel<T>::Channel(Module * parent, booksim2::Interconnect* icnt, string const & name)
   : TimedModule(parent, name), _delay(1), _input(0), _output(0), icnt(icnt) {
 }
 

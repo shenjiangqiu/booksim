@@ -38,7 +38,7 @@
 #include "channel.hpp"
 #include "config_utils.hpp"
 
-class Interconnect;
+class booksim2::Interconnect;
 
 typedef Channel<Credit> CreditChannel;
 
@@ -96,13 +96,13 @@ protected:
 public:
   Router( const Configuration& config,
 	  Module *parent, const string & name, int id,
-	  int inputs, int outputs, Interconnect* icnt );
+	  int inputs, int outputs, booksim2::Interconnect* icnt );
 
   static Router *NewRouter( const Configuration& config,
-			    Module *parent, Interconnect* icnt, const string & name, int id,
+			    Module *parent, booksim2::Interconnect* icnt, const string & name, int id,
 			    int inputs, int outputs );
 
-  Interconnect* icnt;
+  booksim2::Interconnect* icnt;
 
   virtual void AddInputChannel( FlitChannel *channel, CreditChannel *backchannel );
   virtual void AddOutputChannel( FlitChannel *channel, CreditChannel *backchannel );

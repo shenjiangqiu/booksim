@@ -60,7 +60,7 @@ void BufferState::BufferPolicy::SendingFlit(Flit const * const f) {
 void BufferState::BufferPolicy::FreeSlotFor(int vc) {
 }
 
-BufferState::BufferPolicy * BufferState::BufferPolicy::New(Configuration const & config, BufferState * parent, Interconnect* icnt, const string & name)
+BufferState::BufferPolicy * BufferState::BufferPolicy::New(Configuration const & config, BufferState * parent, booksim2::Interconnect* icnt, const string & name)
 {
   BufferPolicy * sp = NULL;
   string buffer_policy = config.GetStr("buffer_policy");
@@ -539,7 +539,7 @@ void BufferState::SimpleFeedbackSharedBufferPolicy::FreeSlotFor(int vc)
 }
 
 BufferState::BufferState( const Configuration& config, Module *parent, 
-                         Interconnect* icnt, const string& name ) : 
+                         booksim2::Interconnect* icnt, const string& name ) : 
   Module( parent, name ), _occupancy(0), icnt(icnt)
 {
   _vcs = config.GetInt( "num_vcs" );

@@ -37,8 +37,9 @@
 #include "config_utils.hpp"
 #include "module.hpp"
 
+namespace booksim2 {
 class Interconnect;
-
+}
 class VC : public Module {
 public:
   enum eVCState { state_min = 0, idle = state_min, routing, vc_alloc, active, 
@@ -49,7 +50,7 @@ public:
   static const char * const VCSTATE[];
   
 private:
-  Interconnect* icnt;
+  booksim2::Interconnect* icnt;
 
   deque<Flit *> _buffer;
   
@@ -78,7 +79,7 @@ private:
 public:
   
   VC( const Configuration& config, int outputs,
-      Module *parent, Interconnect* icnt, const string& name );
+      Module *parent, booksim2::Interconnect* icnt, const string& name );
   ~VC();
 
   void AddFlit( Flit *f );

@@ -67,7 +67,7 @@ static int _ycount;
 static int _xrouter;
 static int _yrouter;
 
-FlatFlyOnChip::FlatFlyOnChip( const Configuration &config, const string & name, Interconnect* icnt ) :
+FlatFlyOnChip::FlatFlyOnChip( const Configuration &config, const string & name, booksim2::Interconnect* icnt ) :
   Network( config, name, icnt )
 {
 
@@ -317,7 +317,7 @@ double FlatFlyOnChip::Capacity( ) const
 }
 
 
-void FlatFlyOnChip::RegisterRoutingFunctions(Interconnect* icnt){
+void FlatFlyOnChip::RegisterRoutingFunctions(booksim2::Interconnect* icnt){
 
   
   icnt->gRoutingFunctionMap["ran_min_flatfly"] = &min_flatfly;
@@ -333,7 +333,7 @@ void FlatFlyOnChip::RegisterRoutingFunctions(Interconnect* icnt){
 void adaptive_xyyx_flatfly( const Router *r, const Flit *f, int in_channel, 
 		  OutputSet *outputs, bool inject )
 { 
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   // ( Traffic Class , Routing Order ) -> Virtual Channel Range
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
@@ -411,7 +411,7 @@ void adaptive_xyyx_flatfly( const Router *r, const Flit *f, int in_channel,
 void xyyx_flatfly( const Router *r, const Flit *f, int in_channel, 
 		  OutputSet *outputs, bool inject )
 { 
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   // ( Traffic Class , Routing Order ) -> Virtual Channel Range
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
@@ -470,7 +470,7 @@ void xyyx_flatfly( const Router *r, const Flit *f, int in_channel,
   outputs->AddRange( out_port , vcBegin, vcEnd );
 }
 
-int flatfly_outport_yx(Interconnect* icnt, int dest, int rID) {
+int flatfly_outport_yx(booksim2::Interconnect* icnt, int dest, int rID) {
   int dest_rID = (int) (dest / icnt->gC);
   int _dim   = icnt->gN;
   int output = -1, dID, sID;
@@ -505,7 +505,7 @@ int flatfly_outport_yx(Interconnect* icnt, int dest, int rID) {
 void valiant_flatfly( const Router *r, const Flit *f, int in_channel, 
 		  OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   // ( Traffic Class , Routing Order ) -> Virtual Channel Range
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
@@ -575,7 +575,7 @@ void valiant_flatfly( const Router *r, const Flit *f, int in_channel,
 void min_flatfly( const Router *r, const Flit *f, int in_channel, 
 		  OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   // ( Traffic Class , Routing Order ) -> Virtual Channel Range
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
@@ -631,7 +631,7 @@ void min_flatfly( const Router *r, const Flit *f, int in_channel,
 void ugal_xyyx_flatfly_onchip( const Router *r, const Flit *f, int in_channel,
 			  OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   // ( Traffic Class , Routing Order ) -> Virtual Channel Range
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
@@ -831,7 +831,7 @@ void ugal_xyyx_flatfly_onchip( const Router *r, const Flit *f, int in_channel,
 void ugal_flatfly_onchip( const Router *r, const Flit *f, int in_channel,
 			  OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   // ( Traffic Class , Routing Order ) -> Virtual Channel Range
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
@@ -1005,7 +1005,7 @@ void ugal_flatfly_onchip( const Router *r, const Flit *f, int in_channel,
 void ugal_pni_flatfly_onchip( const Router *r, const Flit *f, int in_channel,
 			      OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   // ( Traffic Class , Routing Order ) -> Virtual Channel Range
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
@@ -1209,7 +1209,7 @@ void ugal_pni_flatfly_onchip( const Router *r, const Flit *f, int in_channel,
 //=============================================================^M
 // UGAL : calculate distance (hop cnt)  between src and destination
 //=============================================================^M
-int find_distance (Interconnect* icnt, int src, int dest) {
+int find_distance (booksim2::Interconnect* icnt, int src, int dest) {
   int dist = 0;
   int _dim   = icnt->gN;
   
@@ -1237,7 +1237,7 @@ int find_distance (Interconnect* icnt, int src, int dest) {
 //=============================================================^M
 // UGAL : find random node for load balancing
 //=============================================================^M
-int find_ran_intm (Interconnect* icnt, int src, int dest) {
+int find_ran_intm (booksim2::Interconnect* icnt, int src, int dest) {
   int _dim   = icnt->gN;
   int _dim_size;
   int _ran_dest = 0;
@@ -1280,7 +1280,7 @@ int find_ran_intm (Interconnect* icnt, int src, int dest) {
 // given the dimension and destination
 //=============================================================
 // starting from DIM 0 (x first)
-int flatfly_outport(Interconnect* icnt, int dest, int rID) {
+int flatfly_outport(booksim2::Interconnect* icnt, int dest, int rID) {
   int dest_rID = (int) (dest / icnt->gC);
   int _dim   = icnt->gN;
   int output = -1, dID, sID;
@@ -1314,7 +1314,7 @@ int flatfly_outport(Interconnect* icnt, int dest, int rID) {
   return -1;
 }
 
-int flatfly_transformation(Interconnect* icnt, int dest){
+int flatfly_transformation(booksim2::Interconnect* icnt, int dest){
   //the magic of destination transformation
 
   //destination transformation, translate how the nodes are actually arranged

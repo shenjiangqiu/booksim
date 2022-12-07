@@ -58,7 +58,7 @@ int const Router::STALL_CROSSBAR_CONFLICT = -6;
 
 Router::Router( const Configuration& config,
 		Module *parent, const string & name, int id,
-		int inputs, int outputs, Interconnect* icnt) :
+		int inputs, int outputs, booksim2::Interconnect* icnt) :
 TimedModule( parent, name ), _id( id ), _inputs( inputs ), _outputs( outputs ),
    _partial_internal_cycles(0.0), icnt(icnt)
 {
@@ -128,7 +128,7 @@ bool Router::IsFaultyOutput( int c ) const
 
 /*Router constructor*/
 Router *Router::NewRouter( const Configuration& config,
-			   Module *parent, Interconnect* icnt, const string & name, int id,
+			   Module *parent, booksim2::Interconnect* icnt, const string & name, int id,
 			   int inputs, int outputs )
 {
   const string type = config.GetStr( "router" );

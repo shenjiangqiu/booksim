@@ -61,8 +61,8 @@ class Tree4 : public Network {
 
 public:
 
-  Tree4( const Configuration& config, const string & name, Interconnect* icnt );
-  static void RegisterRoutingFunctions(Interconnect* icnt) ;
+  Tree4( const Configuration& config, const string & name, booksim2::Interconnect* icnt );
+  static void RegisterRoutingFunctions(booksim2::Interconnect* icnt) ;
   
   static int HeightFromID( int id );
   static int PosFromID( int id );

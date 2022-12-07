@@ -148,7 +148,7 @@ int dragonfly_port(int rID, int source, int dest){
 }
 
 
-DragonFlyNew::DragonFlyNew( const Configuration &config, const string & name, Interconnect* icnt ) :
+DragonFlyNew::DragonFlyNew( const Configuration &config, const string & name, booksim2::Interconnect* icnt ) :
   Network( config, name, icnt )
 {
 
@@ -402,7 +402,7 @@ double DragonFlyNew::Capacity( ) const
   return (double)_k / 8.0;
 }
 
-void DragonFlyNew::RegisterRoutingFunctions(Interconnect* icnt){
+void DragonFlyNew::RegisterRoutingFunctions(booksim2::Interconnect* icnt){
 
   icnt->gRoutingFunctionMap["min_dragonflynew"] = &min_dragonflynew;
   icnt->gRoutingFunctionMap["ugal_dragonflynew"] = &ugal_dragonflynew;
@@ -412,7 +412,7 @@ void DragonFlyNew::RegisterRoutingFunctions(Interconnect* icnt){
 void min_dragonflynew( const Router *r, const Flit *f, int in_channel, 
 		       OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   outputs->Clear( );
 
   if(inject) {
@@ -461,7 +461,7 @@ void min_dragonflynew( const Router *r, const Flit *f, int in_channel,
 void ugal_dragonflynew( const Router *r, const Flit *f, int in_channel, 
 			OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   //need 3 VCs for deadlock freedom
 
   assert(icnt->gNumVCs==3);

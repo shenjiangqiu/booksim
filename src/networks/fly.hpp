@@ -43,11 +43,11 @@ class KNFly : public Network {
   int _InChannel( int stage, int addr, int port ) const;
  
 public:
-  KNFly( const Configuration &config, const string & name, Interconnect* icnt );
+  KNFly( const Configuration &config, const string & name, booksim2::Interconnect* icnt );
 
   int GetN( ) const;
   int GetK( ) const;
-  static void RegisterRoutingFunctions(Interconnect* icnt){};
+  static void RegisterRoutingFunctions(booksim2::Interconnect* icnt){};
   double Capacity( ) const;
 };
 

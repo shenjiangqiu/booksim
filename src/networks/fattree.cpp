@@ -56,7 +56,7 @@
 
  //#define FATTREE_DEBUG
 
-FatTree::FatTree( const Configuration& config,const string & name, Interconnect* icnt )
+FatTree::FatTree( const Configuration& config,const string & name, booksim2::Interconnect* icnt )
   : Network( config ,name, icnt)
 {
   
@@ -87,7 +87,7 @@ void FatTree::_ComputeSize( const Configuration& config )
 }
 
 
-void FatTree::RegisterRoutingFunctions(Interconnect* icnt) {
+void FatTree::RegisterRoutingFunctions(booksim2::Interconnect* icnt) {
 
 }
 

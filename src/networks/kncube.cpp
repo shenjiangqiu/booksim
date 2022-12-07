@@ -43,7 +43,7 @@
  //#include "iq_router.hpp"
 
 
-KNCube::KNCube( const Configuration &config, const string & name, bool mesh, Interconnect* icnt ) :
+KNCube::KNCube( const Configuration &config, const string & name, bool mesh, booksim2::Interconnect* icnt ) :
 Network( config, name, icnt )
 {
   _mesh = mesh;
@@ -65,7 +65,7 @@ void KNCube::_ComputeSize( const Configuration &config )
   _nodes = _size;
 }
 
-void KNCube::RegisterRoutingFunctions(Interconnect* icnt) {
+void KNCube::RegisterRoutingFunctions(booksim2::Interconnect* icnt) {
 
 }
 void KNCube::_BuildNet( const Configuration &config )

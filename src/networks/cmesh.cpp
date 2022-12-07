@@ -54,7 +54,7 @@ int CMesh::_memo_NodeShiftX = 0 ;
 int CMesh::_memo_NodeShiftY = 0 ;
 int CMesh::_memo_PortShiftY = 0 ;
 
-CMesh::CMesh( const Configuration& config, const string & name, Interconnect* icnt ) 
+CMesh::CMesh( const Configuration& config, const string & name, booksim2::Interconnect* icnt ) 
   : Network(config, name, icnt) 
 {
   _ComputeSize( config );
@@ -62,7 +62,7 @@ CMesh::CMesh( const Configuration& config, const string & name, Interconnect* ic
   _BuildNet(config);
 }
 
-void CMesh::RegisterRoutingFunctions(Interconnect* icnt) {
+void CMesh::RegisterRoutingFunctions(booksim2::Interconnect* icnt) {
   icnt->gRoutingFunctionMap["dor_cmesh"] = &dor_cmesh;
   icnt->gRoutingFunctionMap["dor_no_express_cmesh"] = &dor_no_express_cmesh;
   icnt->gRoutingFunctionMap["xy_yx_cmesh"] = &xy_yx_cmesh;
@@ -315,7 +315,7 @@ void CMesh::_BuildNet( const Configuration& config ) {
 //
 // ----------------------------------------------------------------------
 
-int CMesh::NodeToRouter( Interconnect* icnt, int address ) {
+int CMesh::NodeToRouter( booksim2::Interconnect* icnt, int address ) {
 
   int y  = (address /  (_cX*icnt->gK))/_cY ;
   int x  = (address %  (_cX*icnt->gK))/_cY ;
@@ -324,7 +324,7 @@ int CMesh::NodeToRouter( Interconnect* icnt, int address ) {
   return router ;
 }
 
-int CMesh::NodeToPort( Interconnect* icnt, int address ) {
+int CMesh::NodeToPort( booksim2::Interconnect* icnt, int address ) {
   
   const int maskX  = _cX - 1 ;
   const int maskY  = _cY - 1 ;
@@ -342,7 +342,7 @@ int CMesh::NodeToPort( Interconnect* icnt, int address ) {
 // ----------------------------------------------------------------------
 
 // Concentrated Mesh: X-Y
-int cmesh_xy( Interconnect* icnt, int cur, int dest ) {
+int cmesh_xy( booksim2::Interconnect* icnt, int cur, int dest ) {
 
   const int POSITIVE_X = 0 ;
   const int NEGATIVE_X = 1 ;
@@ -399,7 +399,7 @@ int cmesh_xy( Interconnect* icnt, int cur, int dest ) {
 }
 
 // Concentrated Mesh: Y-X
-int cmesh_yx( Interconnect* icnt, int cur, int dest ) {
+int cmesh_yx( booksim2::Interconnect* icnt, int cur, int dest ) {
   const int POSITIVE_X = 0 ;
   const int NEGATIVE_X = 1 ;
   const int POSITIVE_Y = 2 ;
@@ -457,7 +457,7 @@ int cmesh_yx( Interconnect* icnt, int cur, int dest ) {
 void xy_yx_cmesh( const Router *r, const Flit *f, int in_channel, 
 		  OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
 
   // ( Traffic Class , Routing Order ) -> Virtual Channel Range
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
@@ -533,7 +533,7 @@ void xy_yx_cmesh( const Router *r, const Flit *f, int in_channel,
 //
 // ----------------------------------------------------------------------
 
-int cmesh_xy_no_express( Interconnect* icnt, int cur, int dest ) {
+int cmesh_xy_no_express( booksim2::Interconnect* icnt, int cur, int dest ) {
   
   const int POSITIVE_X = 0 ;
   const int NEGATIVE_X = 1 ;
@@ -565,7 +565,7 @@ int cmesh_xy_no_express( Interconnect* icnt, int cur, int dest ) {
   return 0;
 }
 
-int cmesh_yx_no_express( Interconnect* icnt, int cur, int dest ) {
+int cmesh_yx_no_express( booksim2::Interconnect* icnt, int cur, int dest ) {
 
   const int POSITIVE_X = 0 ;
   const int NEGATIVE_X = 1 ;
@@ -599,7 +599,7 @@ int cmesh_yx_no_express( Interconnect* icnt, int cur, int dest ) {
 void xy_yx_no_express_cmesh( const Router *r, const Flit *f, int in_channel, 
 			     OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   // ( Traffic Class , Routing Order ) -> Virtual Channel Range
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
@@ -666,7 +666,7 @@ void xy_yx_no_express_cmesh( const Router *r, const Flit *f, int in_channel,
 //============================================================
 //
 //=====
-int cmesh_next( Interconnect* icnt, int cur, int dest ) {
+int cmesh_next( booksim2::Interconnect* icnt, int cur, int dest ) {
 
   const int POSITIVE_X = 0 ;
   const int NEGATIVE_X = 1 ;
@@ -727,7 +727,7 @@ int cmesh_next( Interconnect* icnt, int cur, int dest ) {
 void dor_cmesh( const Router *r, const Flit *f, int in_channel, 
 		OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   // ( Traffic Class , Routing Order ) -> Virtual Channel Range
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {
@@ -779,7 +779,7 @@ void dor_cmesh( const Router *r, const Flit *f, int in_channel,
 //============================================================
 //
 //=====
-int cmesh_next_no_express( Interconnect* icnt, int cur, int dest ) {
+int cmesh_next_no_express( booksim2::Interconnect* icnt, int cur, int dest ) {
 
   const int POSITIVE_X = 0 ;
   const int NEGATIVE_X = 1 ;
@@ -812,7 +812,7 @@ int cmesh_next_no_express( Interconnect* icnt, int cur, int dest ) {
 void dor_no_express_cmesh( const Router *r, const Flit *f, int in_channel, 
 			   OutputSet *outputs, bool inject )
 {
-  Interconnect* icnt = r->icnt;
+  booksim2::Interconnect* icnt = r->icnt;
   // ( Traffic Class , Routing Order ) -> Virtual Channel Range
   int vcBegin = 0, vcEnd = icnt->gNumVCs-1;
   if ( f->type == Flit::READ_REQUEST ) {

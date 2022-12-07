@@ -33,7 +33,7 @@
 #include "Interconnect.hpp"
 
 GNNTrafficManager::GNNTrafficManager( const Configuration &config, const vector<Network *> &net,
-                                     Interconnect* icnt)
+                                     booksim2::Interconnect* icnt)
 :TrafficManager(config, net, icnt)
 {
   // The total simulations equal to number of kernels
@@ -191,7 +191,7 @@ int  GNNTrafficManager::_IssuePacket( int source, int cl )
 //TODO: Remove stype?
 //void GNNTrafficManager::_GeneratePacket(int source, int stype, int cl, int time, int subnet, int packet_size, const Flit::FlitType& packet_type, void* const data, int dest)
 void GNNTrafficManager::_GeneratePacket(void* packet,
-                                        uint64_t addr, int bytes, Interconnect::Type type,
+                                        uint64_t addr, int bytes, booksim2::Interconnect::Type type,
                                         int header_size, uint32_t subnet, int cl, int time,
                                         int src, int dst) {
   //  Flit::FlitType packet_type = Flit::ANY_TYPE;
@@ -202,13 +202,13 @@ void GNNTrafficManager::_GeneratePacket(void* packet,
   bool record = false;
   bool watch = (icnt->gWatchOut) && (_packets_to_watch.count(pid) > 0);
   Flit::FlitType packet_type;
-  if (type == Interconnect::Type::READ) {
+  if (type == booksim2::Interconnect::Type::READ) {
     packet_type = Flit::READ_REQUEST;
-  } else if (type == Interconnect::Type::WRITE) {
+  } else if (type == booksim2::Interconnect::Type::WRITE) {
     packet_type = Flit::WRITE_REQUEST;
-  } else if (type == Interconnect::Type::READ_REPLY) {
+  } else if (type == booksim2::Interconnect::Type::READ_REPLY) {
     packet_type = Flit::READ_REPLY;
-  } else if (type == Interconnect::Type::WRITE_REPLY) {
+  } else if (type == booksim2::Interconnect::Type::WRITE_REPLY) {
     // FIX: Do we need write reply (ACK)?
     packet_type = Flit::WRITE_REPLY;
     assert(false && "No write reply currently");

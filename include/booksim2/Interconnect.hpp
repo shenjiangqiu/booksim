@@ -14,7 +14,7 @@ class NetworkRequest;
 class Stats;
 class Router;
 class OutputSet;
-
+namespace booksim2 {
 class Interconnect {
 public:
   enum class Type {
@@ -130,5 +130,5 @@ private:
   void initParameters();
   // std::shared_ptr<IcntStats> stats;
 };
-
+}
 #endif

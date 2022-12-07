@@ -44,13 +44,13 @@
 
 TrafficManager * TrafficManager::New(Configuration const & config,
                                      vector<Network *> const & net,
-                                     Interconnect* icnt)
+                                     booksim2::Interconnect* icnt)
 {
     return new GNNTrafficManager(config, net, icnt);
 }
 
 TrafficManager::TrafficManager( const Configuration &config, const vector<Network *> & net,
-                               Interconnect* icnt)
+                               booksim2::Interconnect* icnt)
     : Module( 0, "traffic_manager" ), icnt(icnt), _net(net), _empty_network(false), _deadlock_timer(0), _reset_time(0), _drain_time(-1), _cur_id(0), _cur_pid(0), _time(0)
 {
 
