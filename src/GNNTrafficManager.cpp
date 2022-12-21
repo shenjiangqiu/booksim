@@ -211,7 +211,7 @@ void GNNTrafficManager::_GeneratePacket(void* packet,
   } else if (type == booksim2::Interconnect::Type::WRITE_REPLY) {
     // FIX: Do we need write reply (ACK)?
     packet_type = Flit::WRITE_REPLY;
-    assert(false && "No write reply currently");
+    // assert(false && "No write reply currently");
   } else {
     packet_type = Flit::ANY_TYPE;
     cout << "Packet type is undefined!" << endl;

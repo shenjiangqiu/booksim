@@ -244,6 +244,11 @@ void Interconnect::pop(uint32_t nid, uint32_t subnet) {
   // }
 }
 
+void Interconnect::print_stats() {
+  traffic_manager->UpdateStats();
+  traffic_manager->DisplayStats();
+}
+
 void Interconnect::BoundaryBufferItem::pop() {
   assert(!is_empty());
   auto it = std::find_if(buffer.begin(), buffer.end(), [](const Buffer& buf) {

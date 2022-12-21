@@ -45,6 +45,7 @@ public:
   bool print_activity() { return gPrintActivity; }
 
   Stats* GetStats(const std::string &name);
+  void print_stats();
 
   // void register_stat(std::shared_ptr<CycleObjectStats> stats) override;
 
