@@ -38,7 +38,12 @@
 #include "channel.hpp"
 #include "config_utils.hpp"
 
-class booksim2::Interconnect;
+
+namespace booksim2
+{
+  class Interconnect;
+} // namespace booksim2
+
 
 typedef Channel<Credit> CreditChannel;
 

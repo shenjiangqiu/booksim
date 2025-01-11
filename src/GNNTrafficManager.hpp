@@ -13,7 +13,12 @@
 #include "flit.hpp"
 class DomainCrossRequest;
 class Network;
-class booksim2::Interconnect;
+
+namespace booksim2
+{
+  class Interconnect;
+} // namespace booksim2
+
 //#include "Domain/Interface/DomainCrossRequest.hpp"
 
 class GNNTrafficManager : public TrafficManager {

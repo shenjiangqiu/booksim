@@ -47,7 +47,12 @@
 
 using namespace std;
 
-class booksim2::Interconnect;
+
+namespace booksim2
+{
+  class Interconnect;
+} // namespace booksim2
+
 
 template<typename T>
 class Channel : public TimedModule {

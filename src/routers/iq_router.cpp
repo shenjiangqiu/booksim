@@ -33,7 +33,7 @@
 #include <cstdlib>
 #include <cassert>
 #include <limits>
-
+#include <sstream>
 #include "globals.hpp"
 #include "random_utils.hpp"
 #include "vc.hpp"

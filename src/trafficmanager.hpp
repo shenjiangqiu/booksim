@@ -46,7 +46,12 @@
 
 //register the requests to a node
 class PacketReplyInfo;
-class booksim2::Interconnect;
+
+namespace booksim2
+{
+  class Interconnect;
+} // namespace booksim2
+
 
 class TrafficManager : public Module {
 

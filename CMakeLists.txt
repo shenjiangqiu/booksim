@@ -13,4 +13,6 @@ target_include_directories(booksim2
   PRIVATE src/routers
   PRIVATE src/networks
 )
+find_package(Boost REQUIRED)
+target_link_libraries(booksim2 PUBLIC Boost::boost)
 target_compile_options(booksim2 PRIVATE -Wall -O3)

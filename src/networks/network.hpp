@@ -44,7 +44,11 @@
 
 typedef Channel<Credit> CreditChannel;
 
-class booksim2::Interconnect;
+namespace booksim2
+{
+  class Interconnect;
+} // namespace booksim2
+
 
 class Network : public TimedModule {
 protected:
